@@ -1,0 +1,465 @@
+
+---
+const site = {
+  name: "Shuqi Ke",
+  title: "PhD Student · Carnegie Mellon University",
+  website: "https://shuqike.com",
+  blurb:
+    "I am a Ph.D. candidate at Carnegie Mellon University, advised by Prof. Giulia Fanti. I work to close the generalization and sample efficiency gap between AI and human.",
+};
+
+const links = [
+  { label: "Email", url: `mailto:${"shuqike@andrew.cmu.edu"}` },
+  { label: "Google Scholar", url: "https://scholar.google.com/citations?user=c7m8_OwAAAAJ&hl=en" },
+  { label: "GitHub", url: "https://github.com/shuqike" },
+];
+
+const news = [
+  {
+    date: "2026-03",
+    text: "Visiting the Simons Institute for the Theory of Computing as part of the FCL program.",
+    url: null,
+  },
+//  {
+//    date: "2025-06",
+//    text: "Talk at Conference/Workshop Name.",
+//    url: "/cv.pdf",
+//  },
+];
+
+const pubs = [
+  {
+    year: 2026,
+    title: "Value-Based Pre-Training with Downstream Feedback",
+    authors: "<b>Shuqi Ke</b>, Giulia Fanti",
+    venue: "preprint",
+    note: "",
+    links: [{ label: "PDF", url: "https://arxiv.org/abs/2601.22108" }],
+    highlight: true,
+  },
+  {
+    year: 2025,
+    title: "Characterizing the Training Dynamics of Private Fine-Tuning with Langevin Diffusion",
+    authors: "<b>Shuqi Ke</b>, Charlie Hou, Sewoong Oh, Giulia Fanti",
+    venue: "TMLR",
+    note: "",
+    links: [{ label: "PDF", url: "https://arxiv.org/abs/2402.18905" }],
+    highlight: false,
+  },
+  {
+    year: 2024,
+    title: "Reason for Future, Act for Now: A Principled Architecture for Autonomous LLM Agents",
+    authors: "Zhihan Liu, Hao Hu, Shenao Zhang, Hongyi Guo, <b>Shuqi Ke</b>, Boyi Liu, Zhaoran Wang",
+    venue: "ICML",
+    note: "",
+    links: [{ label: "PDF", url: "https://arxiv.org/abs/2309.17382" }, { label: "Code", url: "https://github.com/agentification/RAFA_code" }, { label: "Website", url: "https://agentification.github.io/RAFA/" }],
+    highlight: false,
+  },
+];
+
+const teaching = [
+  { term: "Spring 2026", role: "tbd", course: "tbd", link: null },
+  //{ term: "Spring 2026", role: "TA", course: "Course Name (CODE 123)", link: null },
+  //{ term: "Spring 2025", role: "Instructor", course: "Seminar Name", link: null },
+];
+
+const service = [
+  "Reviewer: ICML, ICLR, NeurIPS, AISTATS, TMLR, IEEE TSP",
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{site.name}</title>
+    <meta name="description" content={`${site.name} — ${site.title}. Research, publications, and teaching.`} />
+    <meta name="author" content={site.name} />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={`${site.name} · ${site.title}`} />
+    <meta property="og:description" content="Academic homepage: research, publications, and teaching." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={site.website} />
+    <meta property="og:image" content={`${site.website}/img/profile.jpg`} />
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: site.name,
+        email: site.email,
+        url: site.website,
+        jobTitle: site.title,
+        homeLocation: site.location,
+      })}
+    </script>
+
+    <style is:global>
+      :root {
+        --bg: #ffffff;
+        --fg: #111111;
+        --muted: #5f6368;
+        --card: #f6f7f8;
+        --border: rgba(17, 17, 17, 0.12);
+        --link: #0b57d0;
+        --link-hover: #0a43a3;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        --radius: 14px;
+        --max: 960px;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0b0c0f;
+          --fg: #e9eaec;
+          --muted: #a6abb3;
+          --card: #12141a;
+          --border: rgba(233, 234, 236, 0.12);
+          --link: #7fb3ff;
+          --link-hover: #a6ccff;
+          --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        }
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        background: var(--bg);
+        color: var(--fg);
+        line-height: 1.55;
+      }
+      a { color: var(--link); text-decoration: none; }
+      a:hover { color: var(--link-hover); text-decoration: underline; }
+      strong, b { font-weight: 650; }
+
+      .skip {
+        position: absolute;
+        left: -999px;
+        top: 10px;
+        background: var(--card);
+        color: var(--fg);
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+      }
+      .skip:focus { left: 12px; z-index: 1000; }
+
+      .wrap { max-width: var(--max); margin: 0 auto; padding: 28px 18px 60px; }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 10px 0 18px;
+        border-bottom: 1px solid var(--border);
+      }
+      .brand {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        white-space: nowrap;
+      }
+      .brand .name { font-size: 18px; font-weight: 700; letter-spacing: 0.2px; }
+      .brand .role { font-size: 13px; color: var(--muted); }
+
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: flex-end;
+      }
+      nav a {
+        font-size: 13px;
+        color: var(--muted);
+        padding: 6px 8px;
+        border-radius: 10px;
+      }
+      nav a:hover {
+        color: var(--fg);
+        background: color-mix(in srgb, var(--card) 80%, transparent);
+        text-decoration: none;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 190px 1fr;
+        gap: 22px;
+        padding: 26px 0 8px;
+      }
+      @media (max-width: 720px) {
+        .hero { grid-template-columns: 1fr; }
+      }
+
+      .photo {
+        width: 190px;
+        height: 190px;
+        border-radius: 22px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        background: var(--card);
+      }
+      .photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      @media (max-width: 720px) {
+        .photo { width: 150px; height: 150px; border-radius: 18px; }
+      }
+
+      .hero h1 {
+        margin: 0;
+        font-size: 34px;
+        letter-spacing: -0.4px;
+        line-height: 1.15;
+      }
+      .meta {
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .blurb {
+        margin: 14px 0 0;
+        font-size: 15px;
+      }
+      .pillrow {
+        margin-top: 14px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: color-mix(in srgb, var(--card) 85%, transparent);
+        font-size: 13px;
+        color: var(--fg);
+        text-decoration: none;
+      }
+      .pill:hover { text-decoration: none; border-color: color-mix(in srgb, var(--border) 55%, var(--fg)); }
+
+      main { padding-top: 18px; }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-top: 16px;
+      }
+      @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+
+      section.card {
+        border: 1px solid var(--border);
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 16px 16px 14px;
+        box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+      }
+      section.card h2 {
+        margin: 0 0 10px;
+        font-size: 16px;
+        letter-spacing: -0.2px;
+      }
+      .muted { color: var(--muted); }
+
+      ul.clean { margin: 0; padding-left: 18px; }
+      ul.clean li { margin: 6px 0; }
+
+      .newslist { display: grid; gap: 10px; }
+      .newsitem {
+        display: grid;
+        grid-template-columns: 78px 1fr;
+        gap: 12px;
+        padding: 10px 10px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: color-mix(in srgb, var(--bg) 55%, var(--card));
+      }
+      .newsdate {
+        font-variant-numeric: tabular-nums;
+        font-size: 12px;
+        color: var(--muted);
+        padding-top: 2px;
+      }
+      .newsitem a { text-decoration: none; }
+      .newsitem a:hover { text-decoration: underline; }
+
+      .pubs { display: grid; gap: 12px; }
+      .pub {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: color-mix(in srgb, var(--bg) 55%, var(--card));
+        padding: 12px 12px;
+      }
+      .pub.highlight {
+        border-color: color-mix(in srgb, var(--link) 35%, var(--border));
+        box-shadow: 0 0 0 2px color-mix(in srgb, var(--link) 14%, transparent);
+      }
+      .pub .title { font-weight: 700; margin: 0 0 4px; }
+      .pub .line { margin: 0; color: var(--muted); font-size: 13px; }
+      .pub .links { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 8px; }
+      .tag {
+        font-size: 12px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 6px 10px;
+        color: var(--fg);
+        background: color-mix(in srgb, var(--card) 85%, transparent);
+        text-decoration: none;
+      }
+      .tag:hover { text-decoration: none; border-color: color-mix(in srgb, var(--border) 55%, var(--fg)); }
+
+      footer {
+        margin-top: 22px;
+        padding-top: 18px;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 13px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: space-between;
+      }
+      .kicker { font-size: 12px; color: var(--muted); margin-top: 6px; }
+    </style>
+  </head>
+
+  <body>
+    <a class="skip" href="#content">Skip to content</a>
+
+    <div class="wrap">
+      <header>
+        <div class="brand">
+          <div class="name">Home</div>
+        </div>
+        <nav aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#news">News</a>
+          <a href="#publications">Publications</a>
+          <a href="#teaching">Teaching</a>
+        </nav>
+      </header>
+
+      <section class="hero" id="about" aria-label="Intro">
+        <div class="photo">
+          <img src="/img/profile.png" alt={`${site.name} profile photo`} loading="eager" />
+        </div>
+
+        <div>
+          <h1>{site.name}</h1>
+          <p class="meta">
+            <span class="muted">{site.title}</span>
+            <span class="muted"> · {site.location}</span>
+          </p>
+
+          <p class="blurb" set:html={site.blurb}></p>
+
+          <div class="pillrow" aria-label="Quick links">
+            {links.map((l) => (
+              <a class="pill" href={l.url} target={l.url.startsWith("http") ? "_blank" : undefined} rel={l.url.startsWith("http") ? "noopener noreferrer" : undefined}>
+                {l.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <main id="content">
+        <section class="card" id="news" style="margin-top: 16px;">
+          <h2>News</h2>
+          <div class="newslist">
+            {news.map((n) => (
+              <div class="newsitem">
+                <div class="newsdate">{n.date}</div>
+                <div>
+                  {n.url ? (
+                    <a href={n.url} target={n.url.startsWith("http") ? "_blank" : undefined} rel={n.url.startsWith("http") ? "noopener noreferrer" : undefined}>
+                      {n.text}
+                    </a>
+                  ) : (
+                    <span>{n.text}</span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section class="card" id="publications" style="margin-top: 16px;">
+          <h2>Selected Publications</h2>
+          <div class="pubs">
+            {pubs
+              .sort((a, b) => b.year - a.year)
+              .map((p) => (
+                <article class={`pub ${p.highlight ? "highlight" : ""}`}>
+                  <p class="title">{p.title}</p>
+                  <p class="line" set:html={p.authors}></p>
+                  <p class="line">
+                    <b>{p.venue}</b> · {p.year}
+                    {p.note ? <> · <span>{p.note}</span></> : null}
+                  </p>
+                  {p.links?.length ? (
+                    <div class="links" aria-label="Publication links">
+                      {p.links.map((lnk) => (
+                        <a class="tag" href={lnk.url} target="_blank" rel="noopener noreferrer">
+                          {lnk.label}
+                        </a>
+                      ))}
+                    </div>
+                  ) : null}
+                </article>
+              ))}
+          </div>
+        </section>
+
+        <div class="grid">
+          <section class="card" id="teaching">
+            <h2>Teaching</h2>
+            <ul class="clean">
+              {teaching.map((t) => (
+                <li>
+                  <b>{t.term}</b> · {t.role} ·{" "}
+                  {t.link ? (
+                    <a href={t.link} target="_blank" rel="noopener noreferrer">{t.course}</a>
+                  ) : (
+                    <span>{t.course}</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section class="card">
+            <h2>Service</h2>
+            <ul class="clean">
+              {service.map((s) => (
+                <li>{s}</li>
+              ))}
+            </ul>
+          </section>
+        </div>
+
+        <footer>
+          <div>© {new Date().getFullYear()} {site.name}</div>
+          <div class="muted">
+            Built with Astro
+          </div>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>
+
+
