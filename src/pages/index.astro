@@ -5,7 +5,8 @@ const site = {
   title: "PhD Student · Carnegie Mellon University",
   website: "https://shuqike.com",
   blurb:
-    "I am a Ph.D. student at Carnegie Mellon University, advised by Prof. Giulia Fanti. I work to close the generalization and sample efficiency gap between AI and human. [More about the research problems I work on](https://arxiv.org/abs/2603.15381).",
+    "I am a Ph.D. student at Carnegie Mellon University, advised by Prof. Giulia Fanti. I work to close the generalization and sample efficiency gap between AI and human.",
+  arxivUrl: "https://arxiv.org/abs/2603.15381",
 };
 
 const links = [
@@ -364,7 +365,13 @@ const service = [
             <span class="muted"> · {site.location}</span>
           </p>
 
-          <p class="blurb" set:html={site.blurb}></p>
+          <p class="blurb">
+            {site.blurb}
+            {" "}
+            <a href={site.arxivUrl} target="_blank" rel="noopener noreferrer">
+              <br/> →→ More about the research problems I work on →→
+            </a>
+          </p>
 
           <div class="pillrow" aria-label="Quick links">
             {links.map((l) => (
