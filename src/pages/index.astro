@@ -34,6 +34,18 @@ const news = [
 //  },
 ];
 
+const talks = [
+  // {
+  //   date: "2026-03",
+  //   title: "Talk Title",
+  //   venue: "Conference / Workshop / Seminar Name",
+  //   location: "City, Country",
+  //   url: "https://example.com/event",
+  //   slides: "/slides/example.pdf",
+  //   video: null,
+  // },
+];
+
 const pubs = [
   {
     year: 2026,
@@ -65,7 +77,7 @@ const pubs = [
 ];
 
 const teaching = [
-  { term: "Spring 2026", role: "tbd", course: "tbd", link: null },
+  { term: "Fall 2026", role: "Teaching Assistant", course: "CMU 18734 / 17731: Foundations of Privacy", link: "https://foundprivacy.github.io/" },
   //{ term: "Spring 2026", role: "TA", course: "Course Name (CODE 123)", link: null },
   //{ term: "Spring 2025", role: "Instructor", course: "Seminar Name", link: null },
 ];
@@ -328,6 +340,17 @@ const service = [
       }
       .tag:hover { text-decoration: none; border-color: color-mix(in srgb, var(--border) 55%, var(--fg)); }
 
+      .talks { display: grid; gap: 12px; }
+      .talk {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: color-mix(in srgb, var(--bg) 55%, var(--card));
+        padding: 12px 12px;
+      }
+      .talk .title { font-weight: 700; margin: 0 0 4px; }
+      .talk .line { margin: 0; color: var(--muted); font-size: 13px; }
+      .talk .links { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 8px; }
+
       footer {
         margin-top: 22px;
         padding-top: 18px;
@@ -355,6 +378,7 @@ const service = [
           <a href="#about">About</a>
           <a href="#news">News</a>
           <a href="#publications">Publications</a>
+          <a href="#talks">Talks</a>
           <a href="#teaching">Teaching</a>
         </nav>
       </header>
@@ -436,6 +460,55 @@ const service = [
                   ) : null}
                 </article>
               ))}
+          </div>
+        </section>
+
+        <section class="card" id="talks" style="margin-top: 16px;">
+          <h2>Talks</h2>
+          <div class="talks">
+            {talks.length ? (
+              [...talks]
+                .sort((a, b) => b.date.localeCompare(a.date))
+                .map((t) => (
+                  <article class="talk">
+                    <p class="title">
+                      {t.url ? (
+                        <a href={t.url} target={t.url.startsWith("http") ? "_blank" : undefined} rel={t.url.startsWith("http") ? "noopener noreferrer" : undefined}>
+                          {t.title}
+                        </a>
+                      ) : (
+                        <span>{t.title}</span>
+                      )}
+                    </p>
+                    <p class="line">
+                      <b>{t.venue}</b>
+                      {t.location ? <> · <span>{t.location}</span></> : null}
+                      {t.date ? <> · <span>{t.date}</span></> : null}
+                    </p>
+                    {t.slides || t.video || t.url ? (
+                      <div class="links" aria-label="Talk links">
+                        {t.slides ? (
+                          <a class="tag" href={t.slides} target={t.slides.startsWith("http") ? "_blank" : undefined} rel={t.slides.startsWith("http") ? "noopener noreferrer" : undefined}>
+                            Slides
+                          </a>
+                        ) : null}
+                        {t.video ? (
+                          <a class="tag" href={t.video} target={t.video.startsWith("http") ? "_blank" : undefined} rel={t.video.startsWith("http") ? "noopener noreferrer" : undefined}>
+                            Video
+                          </a>
+                        ) : null}
+                        {t.url ? (
+                          <a class="tag" href={t.url} target={t.url.startsWith("http") ? "_blank" : undefined} rel={t.url.startsWith("http") ? "noopener noreferrer" : undefined}>
+                            Event
+                          </a>
+                        ) : null}
+                      </div>
+                    ) : null}
+                  </article>
+                ))
+            ) : (
+              <p class="muted" style="margin: 0;">Coming soon.</p>
+            )}
           </div>
         </section>
 
